@@ -1,0 +1,65 @@
+paths:
+  base_dir: "C:/Users/251874/Desktop/TCC_EMIT_PRH"
+  raw_data_dir: "C:/Users/251874/Desktop/TCC_EMIT_PRH/data/raw"
+  output_dir: "C:/Users/251874/Desktop/TCC_EMIT_PRH/outputs"
+  logs_dir: "C:/Users/251874/Desktop/TCC_EMIT_PRH/outputs/logs"
+  stats_dir: "C:/Users/251874/Desktop/TCC_EMIT_PRH/outputs/stats"
+  manifests_dir: "C:/Users/251874/Desktop/TCC_EMIT_PRH/outputs/manifests"
+  manifest_dir:  "C:/Users/251874/Desktop/TCC_EMIT_PRH/outputs/manifests"
+  mag1c_dir:     "C:/Users/251874/Desktop/TCC_EMIT_PRH/data/mag1c"
+  patches_mag1c: "C:/Users/251874/Desktop/TCC_EMIT_PRH/data/patches/mag1c"
+  patches_raw_images: "D:/Usuários/251874/TCC_EMIT_PRH/data/patches/images"
+  patches_raw_masks:  "C:/Users/251874/Desktop/TCC_EMIT_PRH/data/patches/masks"
+  patches_pca_images: "C:/Users/251874/Desktop/TCC_EMIT_PRH/data/pca/images"
+  patches_pca_masks:  "C:/Users/251874/Desktop/TCC_EMIT_PRH/data/pca/masks"
+  model_dir:      "C:/Users/251874/Desktop/TCC_EMIT_PRH/models/checkpoints_withmag"
+  prediction_dir: "C:/Users/251874/Desktop/TCC_EMIT_PRH/prediction_withmag"
+
+processing:
+  apply_pca: false
+  include_mag1c: true
+  normalization: true
+  clip_negative: true
+  swir_range_nm: [2122, 2488]
+  max_nan_ratio: 0.40
+  min_variance: 1.0e-8
+  q_low: 1.0
+  q_high: 99.0
+  patch_size: 128
+  stride: 64
+  min_valid_fraction: 0.70
+
+masking:
+  method: percentile
+  percentile: 50
+  k_sigma: 2.8
+  abs_floor: 60.0
+  sigma_clip_lo_q: 1.0
+  sigma_clip_hi_q: 99.5
+  cap_percentile: 99.9
+  morph_kernel: 3
+  open_iter: 1
+  close_iter: 2
+  min_area: 96
+
+model:
+  out_channels: 1
+  base_channels: 96
+  dropout: 0.10
+  depth: 4
+
+training:
+  batch_size: 8
+  num_workers: 0
+  epochs: 140
+  lr: 1.0e-3
+  weight_decay: 1.0e-4
+  val_split: 0.20
+  seed: 42
+  device: "cpu"
+  amp: false
+  pos_weight: 12.0
+  monitor: "val_f1"
+
+inference:
+  threshold: null
