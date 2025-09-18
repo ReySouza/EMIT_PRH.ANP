@@ -1,1 +1,24 @@
-
+name: EMIT_PRH
+channels:
+  - conda-forge
+  - defaults
+  - pytorch
+dependencies:
+  - python=3.10
+  - numpy
+  - scipy
+  - pandas
+  - scikit-learn
+  - scikit-image
+  - matplotlib
+  - tqdm
+  - pyyaml
+  - rasterio
+  - xarray
+  - spectral
+  - pillow
+  - joblib
+  - ipython
+  - jupyter
+  - pip
+  - spyder-kernels=2.1
